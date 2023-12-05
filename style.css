@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: cursive, 'Times New Roman', Times, serif;
 }
 
 .navbar ul {
@@ -7,11 +7,11 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: rgb(22, 22, 112)
 }
 
 .navbar ul li {
-    float: left;
+    float: right;
 }
 
 .navbar ul li a {
@@ -31,6 +31,17 @@ body {
     height: auto;
 }
 
+.hotel-title {
+    position: absolute; /* Position the title absolutely within the hotel-photo div */
+    top: 30%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Align the center of the hotel-title with the center of the image */
+    font-family: cursive, 'Times New Roman', Times, serif;
+    color: rgb(0, 0, 0); /* Text color */
+    font-size: 60px; /* Text size */
+    text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Text shadow for better readability */
+}
+
 .room-section {
     display: flex;
     flex-direction: column;
@@ -43,7 +54,17 @@ body {
     margin: 20px 0;
 }
 
+.room-description {
+    text-align: center; /* This ensures everything inside is centered */
+    margin-bottom: 40px; /* Adjust as needed for spacing */
+}
+
+.room-title {
+    margin-bottom: 10px; /* Space between title and paragraph */
+    /* Add more styling as needed */
+}
 .room .description {
+    font-size: 20px;
     flex: 1;
     padding: 20px;
 }
