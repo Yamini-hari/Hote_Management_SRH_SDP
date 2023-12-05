@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Booking</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+.form-container {
+    background: white;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input[type="number"],
+input[type="date"],
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #0056b3;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #004494;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        width: 90%;
+        margin: 20px auto;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h2>New Booking</h2>
+    <form id="bookingForm">
+        <label for="customerID">Customer ID:</label>
+        <input type="number" id="customerID" name="customerID" required><br><br>
+
+        <label for="roomID">Room ID:</label>
+        <input type="number" id="roomID" name="roomID" required><br><br>
+
+        <label for="serviceID">Service ID (optional):</label>
+        <input type="number" id="serviceID" name="serviceID"><br><br>
+
+        <label for="checkinDate">Check-in Date:</label>
+        <input type="date" id="checkinDate" name="checkinDate" required><br><br>
+
+        <label for="checkoutDate">Check-out Date:</label>
+        <input type="date" id="checkoutDate" name="checkoutDate" required><br><br>
+
+        <label for="totalAmount">Total Amount:</label>
+        <input type="number" id="totalAmount" name="totalAmount" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = {
+        CustomerID: document.getElementById('customerID').value,
+        RoomID: document.getElementById('roomID').value,
+        ServiceID: document.getElementById('serviceID').value,
+        Checkin_date: document.getElementById('checkinDate').value,
+        Checkout_date: document.getElementById('checkoutDate').value,
+        Total_Amount: document.getElementById('totalAmount').value
+    };
+
+    fetch('http://localhost:8000/bookings/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+    </script>
+</body>
+</html>
