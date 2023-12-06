@@ -85,16 +85,15 @@
             <label for="email">Email: </label>
             <input type="text" id="email" name="email" oninput="validateEmail()" required>
             <p id="emailResult"></p>
-    
+
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" oninput="validatePassword()" required>
+            <p id="passwordResult"></p>
         
             <label for="phoneNumber">Phone Number: </label>
             <input type="text" id="phoneNumber" name="phoneNumber" oninput="validatePhoneNumber()" required>
             <p id="phoneResult"></p>
-        
-        
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" oninput="validatePassword()" required>
-            <p id="passwordResult"></p>
+
             <button type="button" onclick="loginUser()">Register Now</button>
         </form>
         
@@ -126,7 +125,19 @@
                     document.getElementById('emailResult').innerHTML = 'Please enter a valid email address.';
                 }
             }
+            function validatePassword() {
+                var passwordInput = document.getElementById('password');
+                var password = passwordInput.value;
 
+                // Validate password - At least 8 characters, including at least one uppercase letter, one lowercase letter, and one digit
+                var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+                if (passwordPattern.test(password)) {
+                    document.getElementById('passwordResult').innerHTML = 'Valid password.';
+                } else {
+                    document.getElementById('passwordResult').innerHTML = 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.';
+                }
+            }
             function validatePhoneNumber() {
                 var phoneInput = document.getElementById('phoneNumber');
                 var phoneNumber = phoneInput.value;
@@ -141,19 +152,7 @@
                 }
             }
 
-            function validatePassword() {
-                var passwordInput = document.getElementById('password');
-                var password = passwordInput.value;
 
-                // Validate password - At least 8 characters, including at least one uppercase letter, one lowercase letter, and one digit
-                var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-
-                if (passwordPattern.test(password)) {
-                    document.getElementById('passwordResult').innerHTML = 'Valid password.';
-                } else {
-                    document.getElementById('passwordResult').innerHTML = 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.';
-                }
-            }
         </script>
     </section>
 </body>
