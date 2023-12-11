@@ -121,6 +121,8 @@
 
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+
             Checkin_date: document.getElementById('checkinDate').value,
             Checkout_date: document.getElementById('checkoutDate').value,
             RoomType: document.getElementById('roomType').value,
@@ -138,7 +140,7 @@
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            
+
         })
         .catch((error) => {
             console.error('Error:', error);
