@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Overview</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: rgb(22, 22, 112);
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 2em;
+        }
+
+        h1.booking {
+            font-size: 30px;
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+        }
+
+        p {
+            margin: 0.5em 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        button {
+            background-color: rgb(22, 22, 112);
+            color: white;
+            padding: 0.5em;
+            cursor: pointer;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="booking">Booking Overview</h1>
+    </header>
+
+    <div class="container">
+        <h2>User Details</h2>
+        <p><strong>Name:</strong> <span id="overviewName"></span></p>
+        <p><strong>Email:</strong> <span id="overviewEmail"></span></p>
+        <p><strong>Check-in Date:</strong> <span id="overviewCheckInDate"></span></p>
+        <p><strong>Check-out Date:</strong> <span id="overviewCheckOutDate"></span></p>
+        <p><strong>Total Nights:</strong> <span id="overviewTotalNights"></span></p>
+
+        <h2>Selected Room</h2>
+        <ul id="selectedRoomsList"></ul>
+        <p id="totalAmount"></p>
+
+        <button onclick="confirmBooking()">Confirm Booking</button>
+        <button onclick="goToHomePage()">Back to Home</button>
+    </div>
+
+    <script>
+        // Retrieve user and room details from session storage
+        const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
+        const selectedRoom = JSON.parse(sessionStorage.getItem('selectedRoom'));
+
+        // Display user details
+        if (userDetails) {
+            document.getElementById('overviewName').innerText = `${userDetails.firstName} ${userDetails.lastName}`;
+            document.getElementById('overviewEmail').innerText = userDetails.email;
+            document.getElementById('overviewCheckInDate').innerText = userDetails.checkInDate;
+            document.getElementById('overviewCheckOutDate').innerText = userDetails.checkOutDate;
+            document.getElementById('overviewTotalNights').innerText = userDetails.totalNights;
+        }
+
+        // Display selected room details
+        if (selectedRoom) {
+            const selectedRoomsList = document.getElementById('selectedRoomsList');
+            const totalAmount = document.getElementById('totalAmount');
+
+            selectedRoom.forEach(room => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${room.category} - $${room.price} per night`;
+                selectedRoomsList.appendChild(listItem);
+            });
+
+            // Calculate and display total amount
+            const totalPrice = selectedRoom.reduce((sum, room) => sum + room.price * userDetails.totalNights, 0);
+            totalAmount.innerText = `Total Amount: $${totalPrice}`;
+        }
+
+        function confirmBooking() {
+            // Add logic here to submit the booking details to your server/database
+            alert('Booking confirmed! Data submitted.');
+        }
+
+        function goToHomePage() {
+            // Redirect to the desired home page
+            window.location.href = 'booking.html';
+        }
+    </script>
+</body>
+</html>

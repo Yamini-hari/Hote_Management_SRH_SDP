@@ -109,7 +109,7 @@
             <h2>Queen Room</h2>
             <p>Price: $280 per night</p>
             <p>One-line description of the room.</p>
-            <button onclick="selectRoom('Twin Room', 150)">Select</button>
+            <button onclick="selectRoom('Queen Room', 280)">Select</button>
         </section>
 
         <section>
@@ -117,15 +117,15 @@
             <h2>King Room</h2>
             <p>Price: $500 per night</p>
             <p>One-line description of the room.</p>
-            <button onclick="selectRoom('Twin Room', 150)">Select</button>
+            <button onclick="selectRoom('King Room', 500)">Select</button>
         </section>
 
         <section>
             <img src="Assets/images/presidential.jpg" alt="Room Image">
-            <h2>Presidential Room</h2>
+            <h2>Presidential Suite</h2>
             <p>Price: $900 per night</p>
             <p>One-line description of the room.</p>
-            <button onclick="selectRoom('Twin Room', 150)">Select</button>
+            <button onclick="selectRoom('Presidential Suite', 900)">Select</button>
         </section>
 
         <!-- Box to describe the selected items -->
@@ -139,87 +139,100 @@
     </div>
 
     <script>
-        const selectedRooms = [];
+    const selectedRooms = [];
 
-        function selectRoom(roomCategory, roomPrice) {
-            // Add the selected room to the array
-            selectedRooms.push({ id: selectedRooms.length + 1, category: roomCategory, price: roomPrice });
+    function selectRoom(roomCategory, roomPrice) {
+        // Add the selected room to the array
+        selectedRooms.push({ id: selectedRooms.length + 1, category: roomCategory, price: roomPrice });
 
-            // Display selected item box with descriptions and total amount
-            const selectedItemBox = document.getElementById('selectedItemBox');
-            const selectedRoomsList = document.getElementById('selectedRoomsList');
-            const totalAmount = document.getElementById('totalAmount');
+        // Display selected item box with descriptions and total amount
+        const selectedItemBox = document.getElementById('selectedItemBox');
+        const selectedRoomsList = document.getElementById('selectedRoomsList');
+        const totalAmount = document.getElementById('totalAmount');
 
-            // Update the list of selected rooms
-            updateSelectedRoomsList(selectedRoomsList);
+        // Update the list of selected rooms
+        updateSelectedRoomsList(selectedRoomsList);
 
-            // Calculate and display total amount
-            const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
-            totalAmount.innerText = `Total Amount: $${totalPrice}`;
+        // Calculate and display total amount
+        const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+        totalAmount.innerText = `Total Amount: $${totalPrice}`;
 
-            selectedItemBox.style.display = 'block';
+        selectedItemBox.style.display = 'block';
+    }
+
+    function cancelSelection(roomId) {
+        // Remove the selected room by its ID
+        const roomIndex = selectedRooms.findIndex(room => room.id === roomId);
+        if (roomIndex !== -1) {
+            selectedRooms.splice(roomIndex, 1);
         }
 
-        function cancelSelection(roomId) {
-            // Remove the selected room by its ID
-            const roomIndex = selectedRooms.findIndex(room => room.id === roomId);
-            if (roomIndex !== -1) {
-                selectedRooms.splice(roomIndex, 1);
-            }
+        // Update the display in the selectedItemBox
+        const selectedRoomsList = document.getElementById('selectedRoomsList');
+        const totalAmount = document.getElementById('totalAmount');
 
-            // Update the display in the selectedItemBox
-            const selectedRoomsList = document.getElementById('selectedRoomsList');
-            const totalAmount = document.getElementById('totalAmount');
+        // Update the list of selected rooms
+        updateSelectedRoomsList(selectedRoomsList);
 
-            // Update the list of selected rooms
-            updateSelectedRoomsList(selectedRoomsList);
+        // Calculate and display total amount
+        const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+        totalAmount.innerText = `Total Amount: $${totalPrice}`;
 
-            // Calculate and display total amount
-            const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
-            totalAmount.innerText = `Total Amount: $${totalPrice}`;
-
-            // Hide the selectedItemBox if no rooms are selected
-            if (selectedRooms.length === 0) {
-                const selectedItemBox = document.getElementById('selectedItemBox');
-                selectedItemBox.style.display = 'none';
-            }
-        }
-
-        function updateSelectedRoomsList(selectedRoomsList) {
-            // Update the list of selected rooms
-            selectedRoomsList.innerHTML = '';
-            selectedRooms.forEach(room => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `${room.category} - $${room.price} per night <button onclick="cancelSelection(${room.id})">Cancel</button>`;
-                selectedRoomsList.appendChild(listItem);
-            });
-        }
-
-        function cancelAllSelection() {
-            // Clear the selectedRooms array
-            selectedRooms.length = 0;
-
-            // Clear the display in the selectedItemBox
-            const selectedRoomsList = document.getElementById('selectedRoomsList');
-            const totalAmount = document.getElementById('totalAmount');
-
-            selectedRoomsList.innerHTML = '';
-            totalAmount.innerText = '';
-
-            // Hide the selectedItemBox
+        // Hide the selectedItemBox if no rooms are selected
+        if (selectedRooms.length === 0) {
             const selectedItemBox = document.getElementById('selectedItemBox');
             selectedItemBox.style.display = 'none';
         }
+    }
 
-        function bookRoom() {
-            // Add logic here to handle the booking process
-            alert('Rooms booked!'); 
+    function updateSelectedRoomsList(selectedRoomsList) {
+        // Update the list of selected rooms
+        selectedRoomsList.innerHTML = '';
+        selectedRooms.forEach(room => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `${room.category} - $${room.price} per night <button onclick="cancelSelection(${room.id})">Cancel</button>`;
+            selectedRoomsList.appendChild(listItem);
+        });
+    }
+
+    function cancelAllSelection() {
+        // Clear the selectedRooms array
+        selectedRooms.length = 0;
+
+        // Clear the display in the selectedItemBox
+        const selectedRoomsList = document.getElementById('selectedRoomsList');
+        const totalAmount = document.getElementById('totalAmount');
+
+        selectedRoomsList.innerHTML = '';
+        totalAmount.innerText = '';
+
+        // Hide the selectedItemBox
+        const selectedItemBox = document.getElementById('selectedItemBox');
+        selectedItemBox.style.display = 'none';
+    }
+
+     function bookRoom() {
+            // Ensure at least one room is selected
+            if (selectedRooms.length === 0) {
+                alert('Please select at least one room before booking.');
+                return;
+            }
+
+            // Calculate and store total amount in session storage
+            const totalPrice = selectedRooms.reduce((sum, room) => sum + room.price, 0);
+            sessionStorage.setItem('totalAmount', totalPrice);
+
+            // Store selected room details in session storage
+            sessionStorage.setItem('selectedRoom', JSON.stringify(selectedRooms));
+
+            // Redirect to booking_overview.html
+            window.location.replace('booking_overview.html');
         }
 
-        function goToHomePage() {
+    function goToHomePage() {
         // Redirect to the desired home page
-        window.location.href = 'booking.html'; 
-        }
-    </script>
+        window.location.href = 'booking.html';
+    }
+</script>
 </body>
 </html>
