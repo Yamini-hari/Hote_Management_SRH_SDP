@@ -114,33 +114,36 @@
     </form>
 
     <script>
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+       document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            const formData = {
-                CustomerID: document.getElementById('customerID').value,
-                RoomID: document.getElementById('roomID').value,
-                ServiceID: document.getElementById('serviceID').value,
-                Checkin_date: document.getElementById('checkinDate').value,
-                Checkout_date: document.getElementById('checkoutDate').value,
-                Total_Amount: document.getElementById('totalAmount').value,
-                RoomType: document.getElementById('roomType').value,
-                Floor: document.getElementById('floor').value
-            };
+        const formData = {
 
-            fetch('http://localhost:8000/bookings/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => console.log(data))
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            Checkin_date: document.getElementById('checkinDate').value,
+            Checkout_date: document.getElementById('checkoutDate').value,
+            RoomType: document.getElementById('roomType').value,
+            Floor: document.getElementById('floor').value,
+            viewType: document.getElementById('viewType').value
+        };
+
+        fetch('http://localhost:8000/bookings/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            
+        })
+        .catch((error) => {
+            console.error('Error:', error);
         });
+    });
     </script>
 </body>
 </html>
