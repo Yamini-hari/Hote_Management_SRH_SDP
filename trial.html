@@ -102,6 +102,7 @@
                 <input type="number" id="floor" name="floor" required>
 
                 <button type="submit">Submit</button>
+                <!-- ... (unchanged code) ... -->
             </form>
         </section>
 
@@ -111,6 +112,7 @@
             <p><strong>Email:</strong> <span id="overviewEmail"></span></p>
             <p><strong>Check-in Date:</strong> <span id="overviewCheckInDate"></span></p>
             <p><strong>Check-out Date:</strong> <span id="overviewCheckOutDate"></span></p>
+            <p><strong>Total Nights:</strong> <span id="overviewTotalNights"></span></p> <!-- New line -->
             <p><strong>Room Type:</strong> <span id="overviewRoomType"></span></p>
             <p><strong>View Type:</strong> <span id="overviewViewType"></span></p>
             <p><strong>Floor:</strong> <span id="overviewFloor"></span></p>
@@ -126,17 +128,22 @@
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
-            const checkInDate = document.getElementById('checkInDate').value;
-            const checkOutDate = document.getElementById('checkOutDate').value;
+            const checkInDate = new Date(document.getElementById('checkInDate').value);
+            const checkOutDate = new Date(document.getElementById('checkOutDate').value);
             const roomType = document.getElementById('roomType').value;
             const viewType = document.getElementById('viewType').value;
             const floor = document.getElementById('floor').value;
 
+            // Calculate total nights
+            const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+            const totalNights = Math.round(Math.abs((checkOutDate - checkInDate) / oneDay));
+
             // Display overview
             document.getElementById('overviewName').innerText = `${firstName} ${lastName}`;
             document.getElementById('overviewEmail').innerText = email;
-            document.getElementById('overviewCheckInDate').innerText = checkInDate;
-            document.getElementById('overviewCheckOutDate').innerText = checkOutDate;
+            document.getElementById('overviewCheckInDate').innerText = checkInDate.toDateString();
+            document.getElementById('overviewCheckOutDate').innerText = checkOutDate.toDateString();
+            document.getElementById('overviewTotalNights').innerText = totalNights; // New line
             document.getElementById('overviewRoomType').innerText = roomType;
             document.getElementById('overviewViewType').innerText = viewType;
             document.getElementById('overviewFloor').innerText = floor;
@@ -153,3 +160,4 @@
     </script>
 </body>
 </html>
+
