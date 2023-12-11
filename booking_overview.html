@@ -75,6 +75,7 @@
         <p><strong>Check-in Date:</strong> <span id="overviewCheckInDate"></span></p>
         <p><strong>Check-out Date:</strong> <span id="overviewCheckOutDate"></span></p>
         <p><strong>Total Nights:</strong> <span id="overviewTotalNights"></span></p>
+        <p><strong>Guests:</strong> <span id="overviewGuests"></span></p>
 
         <h2>Selected Room</h2>
         <ul id="selectedRoomsList"></ul>
@@ -95,6 +96,7 @@
             document.getElementById('overviewEmail').innerText = userDetails.email;
             document.getElementById('overviewCheckInDate').innerText = userDetails.checkInDate;
             document.getElementById('overviewCheckOutDate').innerText = userDetails.checkOutDate;
+            document.getElementById('overviewGuests').innerText = userDetails.guests;
             document.getElementById('overviewTotalNights').innerText = userDetails.totalNights;
         }
 
