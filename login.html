@@ -21,6 +21,12 @@
             padding: 1em;
         }
 
+        .logo img {
+            max-width: 40px; /* Adjust the max-width as needed */
+            height: auto;
+            margin-right: 1500px; /* Adjust the margin as needed */
+        }
+
         section {
             max-width: 400px;
             margin: 20px auto;
@@ -82,6 +88,9 @@
 <body>
 
     <header>
+        <div class="logo">
+            <img src="./Assets/images/hotel-logo.jpeg" alt="Hotel Logo">
+        </div>
         <h1>Hotel Login</h1>
     </header>
 
@@ -126,11 +135,24 @@
                     document.getElementById('passwordResult').innerHTML = 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.';
                 }
             }
+
+            window.addEventListener('scroll', function () {
+                const footer = document.querySelector('footer');
+                const scrollHeight = window.scrollY + window.innerHeight;
+                const documentHeight = document.documentElement.scrollHeight;
+
+                if (scrollHeight >= documentHeight) {
+                    footer.style.display = 'block';
+                } else {
+                    footer.style.display = 'none';
+                }
+            });
+
         </script>
     </section>
 
     <footer>
-        <p>&copy; 2023 Hotel Login. All rights reserved.</p>
+        <p>&copy; 2023 Moonlight Manor. All rights reserved.</p>
     </footer>
 
 

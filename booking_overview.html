@@ -29,6 +29,18 @@
             margin-top: 2em;
         }
 
+        .logo {
+            position: absolute;
+            top: 10;
+            left: 10;
+            padding: 0.5em;
+        }
+
+        .logo img {
+            max-height: 40px; /* Adjust the height as needed */
+        }
+
+
         h1.booking {
             font-size: 30px;
             margin-bottom: 1em;
@@ -61,10 +73,45 @@
             cursor: pointer;
             margin-top: 1em;
         }
+
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: rgb(22, 22, 112);
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .contact-section {
+            margin-top: 2em;
+        }
+
+        .social-media-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 1em;
+        }
+
+        .social-media-link {
+            margin: 0 0.5em;
+        }
+
+        .connect-with-us {
+            margin-top: 1em;
+        }
+    </style>
+
     </style>
 </head>
 <body>
     <header>
+        <div class="logo">
+            <a href="hotel.html">
+                <img src="./Assets/images/Hotel-logo.jpeg" alt="Logo">
+            </a>
+        </div>
         <h1 class="booking">Booking Overview</h1>
     </header>
 
@@ -84,6 +131,35 @@
         <button onclick="confirmBooking()">Confirm Booking</button>
         <button onclick="goToHomePage()">Back to Home</button>
     </div>
+
+
+    <footer>
+
+        <!-- Contact Us Section -->
+        <div class="contact-section">
+            <h2>Contact Us</h2>
+            <p>Email: info@itc-hotel.com</p>
+            <p>Phone: +1 (123) 456-7890</p>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="social-media-links">
+            <a class="social-media-link" href="https://facebook.com" target="_blank">Facebook</a>
+            <a class="social-media-link" href="https://twitter.com" target="_blank">Twitter</a>
+            <a class="social-media-link" href="https://instagram.com" target="_blank">Instagram</a>
+        </div>
+
+        <!-- Connect With Us -->
+        <div class="connect-with-us">
+            <h2>Connect With Us</h2>
+            <p>Stay connected for updates and promotions!</p>
+            <input type="text" placeholder="Enter your email">
+            <button>Subscribe</button>
+        </div>
+
+        <p>&copy; 2023 MoonlightManor. All rights reserved.</p>
+
+    </footer>
 
     <script>
         // Retrieve user and room details from session storage
