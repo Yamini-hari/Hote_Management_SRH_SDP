@@ -56,6 +56,15 @@
       font-size: 1.2rem;
       font-weight: bold;
     }
+     footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -103,7 +112,7 @@
 
   <div class="offer-card">
     <img class="offer-image" src="offer5.jpg" alt="Offer 5">
-    <div class="offer-details">
+    <div class="offer-details">++
       <h2>Romantic Getaway</h2>
       <p>Surprise your loved one with a romantic getaway. Champagne, roses, and a candlelit dinner included in this special package.</p>
       <p class="offer-price">€179 per night</p>
@@ -112,7 +121,26 @@
 
     <!-- Add more offer cards as needed -->
 
+
   </div>
+   <footer>
+    <p> 2023 Hotel Offers. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Show the footer when scrolling to the bottom
+    window.addEventListener('scroll', function () {
+      const footer = document.getElementById('pageFooter');
+      const scrollHeight = window.scrollY + window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      if (scrollHeight >= documentHeight) {
+        footer.style.display = 'block';
+      } else {
+        footer.style.display = 'none';
+      }
+    });
+  </script>
 
 </body>
 </html>
