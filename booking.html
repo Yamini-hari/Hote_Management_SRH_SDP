@@ -98,7 +98,27 @@
 
                 <label for="guests">Guests:</label>
                 <input type="number" id="guests" name="guests" required>
+
+                <label for="Services">Services:</label>
+                <select id="Services" name="Services" multiple>
+                    <option value="breakfast">Breakfast $30 / Guest / Night </option>
+                    <option value="wifi">Wi-Fi $20 For entire stay</option>
+                    <option value="parking">Parking $10 one-time charge</option>
+                    <option value="spa">Spa $50 Per Session</option>
+                </select>
+
+<button type="button" onclick="addService()">Add Service</button>
+
+<div id="selectedServices">
+    <h3>Selected Services:</h3>
+    <ul id="servicesList"></ul>
+</div>
+
                 <button type="submit">Submit</button>
+
+
+
+
             </form>
         </section>
 
@@ -106,19 +126,43 @@
             <h2>Booking Overview</h2>
             <p id="overviewName"></p>
             <p id="overviewDate"></p>
-            <p id="overviewService"></p>
+            <p id="overviewServices"></p>
             <button onclick="confirmBooking()">Confirm Booking</button>
         </section>
+
+
 
     </div>
 
     <script>
-         document.addEventListener('DOMContentLoaded', function () {
-        // Set the min attribute for check-in date to the current date
-        const currentDate = new Date().toISOString().split('T')[0];
-        document.getElementById('checkInDate').min = currentDate;
+   function addService() {
+    // Get the selected services from the dropdown
+    const servicesDropdown = document.getElementById('Services');
+    const selectedServices = [...servicesDropdown.selectedOptions].map(option => option.value);
+
+    // Display the selected services
+    const servicesList = document.getElementById('servicesList');
+
+    // Clear the existing list
+    servicesList.innerHTML = '';
+
+    // Add the selected services to the list
+    selectedServices.forEach(Service => {
+        const listItem = document.createElement('li');
+        listItem.textContent = Service;
+        servicesList.appendChild(listItem);
     });
 
+    // Log selected services to console for debugging
+    console.log('Selected Services:', selectedServices);
+
+    // Clear the selected options in the dropdown
+    selectedServices.forEach(Service => {
+        // Remove the selected options from the dropdown
+        const optionToRemove = servicesDropdown.querySelector(`[value="${Service}"]`);
+        optionToRemove.selected = false;
+    });
+}
     function setCheckoutMin() {
         // Set the min attribute for check-out date based on check-in date
         const checkInDate = document.getElementById('checkInDate').value;
@@ -126,53 +170,64 @@
     }
 
     function submitForm(event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        // Get form values
-        const firstName = document.getElementById('firstName').value;
-        const lastName = document.getElementById('lastName').value;
-        const email = document.getElementById('email').value;
-        const checkInDate = document.getElementById('checkInDate').value;
-        const checkOutDate = document.getElementById('checkOutDate').value;
-        const guests = document.getElementById('guests').value;
+    // Get form values
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const checkInDate = document.getElementById('checkInDate').value;
+    const checkOutDate = document.getElementById('checkOutDate').value;
+    const guests = document.getElementById('guests').value;
 
-        // Validate check-out date
-        if (checkOutDate <= checkInDate) {
-            alert('Check-out date must be greater than the check-in date.');
-            return;
-        }
+    // Get selected services
+    const servicesDropdown = document.getElementById('Services');
+    const selectedServices = [...servicesDropdown.selectedOptions].map(option => option.value);
 
-        if (guests <= 0) {
+    // Log selected services to console for debugging
+    console.log('Selected Services:', selectedServices);
+
+    // Validate check-out date
+    if (checkOutDate <= checkInDate) {
+        alert('Check-out date must be greater than the check-in date.');
+        return;
+    }
+
+    if (guests <= 0) {
         alert('Number of guests must be greater than 0.');
         return;
-        }
+    }
 
+    // Calculate total nights
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    const totalNights = Math.round(Math.abs((new Date(checkOutDate) - new Date(checkInDate)) / oneDay));
 
-        // Calculate total nights
-        const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-        const totalNights = Math.round(Math.abs((new Date(checkOutDate) - new Date(checkInDate)) / oneDay));
+    // Store user details, total nights, and services in session storage
+    const userDetails = {
+        firstName,
+        lastName,
+        email,
+        checkInDate,
+        checkOutDate,
+        guests,
+        totalNights,
+        Services: selectedServices
+    };
 
-        // Store user details and total nights in session storage
-        sessionStorage.setItem('userDetails', JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            checkInDate,
-            checkOutDate,
-            guests,
-            totalNights
+    sessionStorage.setItem('userDetails', JSON.stringify(userDetails));
 
-        }));
-
-        // Redirect to room_details.html
-        window.location.replace('room_details.html');
+    // Redirect to room_details.html
+    window.location.replace('room_details.html');
+}
+    function confirmBooking() {
+        // Add logic here to submit the booking details to your server/database
+        alert('Booking confirmed! Data submitted.');
     }
 
     function goToHomePage() {
         // Redirect to the desired home page
         window.location.href = 'hotel.html';
     }
-
     </script>
 </body>
 </html>
