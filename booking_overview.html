@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,8 +64,9 @@
         }
     </style>
 </head>
+
 <body>
-     <header>
+    <header>
         <h1 class="booking">Booking Overview</h1>
     </header>
 
@@ -90,26 +92,27 @@
         // Retrieve user and room details from session storage
         const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
         const selectedRoom = JSON.parse(sessionStorage.getItem('selectedRoom'));
+        const selectedServices = JSON.parse(sessionStorage.getItem('selectedServices'));
 
         if (userDetails) {
-    // Display user details
-    document.getElementById('overviewName').innerText = `${userDetails.firstName} ${userDetails.lastName}`;
-    document.getElementById('overviewEmail').innerText = userDetails.email;
-    document.getElementById('overviewCheckInDate').innerText = userDetails.checkInDate;
-    document.getElementById('overviewCheckOutDate').innerText = userDetails.checkOutDate;
-    document.getElementById('overviewGuests').innerText = userDetails.guests;
-    document.getElementById('overviewTotalNights').innerText = userDetails.totalNights;
+            // Display user details
+            document.getElementById('overviewName').innerText = `${userDetails.firstName} ${userDetails.lastName}`;
+            document.getElementById('overviewEmail').innerText = userDetails.email;
+            document.getElementById('overviewCheckInDate').innerText = userDetails.checkInDate;
+            document.getElementById('overviewCheckOutDate').innerText = userDetails.checkOutDate;
+            document.getElementById('overviewGuests').innerText = userDetails.guests;
+            document.getElementById('overviewTotalNights').innerText = userDetails.totalNights;
 
-    // Display selected services
-    const servicesListOverview = document.getElementById('overviewServices');
+            // Display selected services
+            const servicesListOverview = document.getElementById('overviewServices');
 
-    // Check if services are available
-    if (userDetails.services && userDetails.services.length > 0) {
-        servicesListOverview.innerText = `Selected Services: ${userDetails.Services.join(', ')}`;
-    } else {
-        servicesListOverview.innerText = "No services selected.";
-    }
-}
+            // Check if services are available
+            if (selectedServices && selectedServices.length > 0) {
+                servicesListOverview.innerHTML = `<strong>Services:</strong> <ul>${selectedServices.map(service => `<li>${service.name} - $${service.amount}</li>`).join('')}</ul>`;
+            } else {
+                servicesListOverview.innerHTML = "<strong>Services:</strong> No services selected.";
+            }
+        }
 
 
 
@@ -140,4 +143,5 @@
         }
     </script>
 </body>
+
 </html>
