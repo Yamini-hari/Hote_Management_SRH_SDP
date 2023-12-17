@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: rgb(22, 22, 112);
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1em;
+        }
+
+        .home-button {
+            background-color: #333;
+            color: white;
+            padding: 0.5em;
+            cursor: pointer;
+            position: absolute;
+            /* Position absolute within the container */
+            top: 3em;
+            /* Adjust top as needed */
+            left: 4em;
+            /* Adjust left as needed */
+        }
+
+        section {
+            padding: 1em;
+            background-color: #fff;
+            margin-bottom: 1em;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        label {
+            margin-bottom: 0.5em;
+        }
+
+        input,
+        select,
+        button {
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+
+        button {
+            background-color: rgb(22, 22, 112);
+            color: white;
+            cursor: pointer;
+        }
+
+        #bookingOverview {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 class="booking">Booking</h1>
+    </header>
+
+    <div class="container">
+        <button class="home-button" onclick="goToHomePage()">Home</button>
+        <section id="new-booking">
+            <h2>New Booking</h2>
+            <form id="bookingForm" onsubmit="submitForm(event)">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required>
+
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="checkInDate">Check-in Date:</label>
+                <input type="date" id="checkInDate" name="checkInDate" required onchange="setCheckoutMin()">
+
+                <label for="checkOutDate">Check-out Date:</label>
+                <input type="date" id="checkOutDate" name="checkOutDate" required>
+
+                <label for="guests">Guests:</label>
+                <input type="number" id="guests" name="guests" required>
+
+                <label>Services:</label>
+                <div id="servicesCheckbox">
+                    <input type="checkbox" id="breakfast" name="services" value="breakfast">
+                    <label for="breakfast">Breakfast $30 / Guest / Night</label><br>
+
+                    <input type="checkbox" id="wifi" name="services" value="wifi">
+                    <label for="wifi">Wi-Fi $20 For entire stay</label><br>
+
+                    <input type="checkbox" id="parking" name="services" value="parking">
+                    <label for="parking">Parking $10 one-time charge</label><br>
+
+                    <input type="checkbox" id="spa" name="services" value="spa">
+                    <label for="spa">Spa $50 Per Session</label><br>
+                </div>
+                <button type="button" onclick="addService()">Add Service</button>
+
+                <div id="selectedServices">
+                    <h3>Selected Services:</h3>
+                    <ul id="servicesList"></ul>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section id="bookingOverview" style="display:none;">
+            <h2>Booking Overview</h2>
+            <p id="overviewName"></p>
+            <p id="overviewDate"></p>
+            <p id="overviewServices"></p>
+            <button onclick="confirmBooking()">Confirm Booking</button>
+        </section>
+
+
+
+    </div>
+
+    <script>
+        function addService() {
+            // Get the selected services from the checkboxes
+            const servicesCheckbox = document.querySelectorAll('input[name="services"]:checked');
+            const selectedServices = [...servicesCheckbox].map(checkbox => checkbox.value);
+
+            // Display the selected services
+            const servicesList = document.getElementById('servicesList');
+
+            // Clear the existing list
+            servicesList.innerHTML = '';
+
+            // Add the selected services to the list
+            selectedServices.forEach(service => {
+                const listItem = document.createElement('li');
+                listItem.textContent = service;
+                servicesList.appendChild(listItem);
+            });
+
+            // Log selected services to console for debugging
+            console.log('Selected Services:', selectedServices);
+        }
+        function submitForm(event) {
+            event.preventDefault();
+
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const checkInDate = document.getElementById('checkInDate').value;
+            const checkOutDate = document.getElementById('checkOutDate').value;
+            const guests = document.getElementById('guests').value;
+
+
+            // Log selected services to console for debugging
+            console.log('Selected Services:', selectedServices);
+
+            // Validate check-in date
+            const currentDate = new Date().toISOString().split('T')[0];
+            if (checkInDate < currentDate) {
+                alert('Check-in date must be equal to or after the current date.');
+                return;
+            }
+
+            // Validate check-out date
+            if (checkOutDate <= checkInDate) {
+                alert('Check-out date must be greater than the check-in date.');
+                return;
+            }
+
+            if (guests <= 0) {
+                alert('Number of guests must be greater than 0.');
+                return;
+            }
+
+            // Calculate total nights
+            const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+            const totalNights = Math.round(Math.abs((new Date(checkOutDate) - new Date(checkInDate)) / oneDay));
+
+            // Store user details, total nights, and services in session storage
+            const userDetails = {
+                firstName,
+                lastName,
+                email,
+                checkInDate,
+                checkOutDate,
+                guests,
+                totalNights,
+                Services: selectedServices
+            };
+
+            sessionStorage.setItem('userDetails', JSON.stringify(userDetails));
+
+            // Redirect to room_details.html
+            window.location.replace('room_details.html');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set the min attribute for check-in date to the current date
+            const currentDate = new Date().toISOString().split('T')[0];
+            document.getElementById('checkInDate').min = currentDate;
+        });
+
+        function setCheckoutMin() {
+            // Set the min attribute for check-out date based on check-in date
+            const checkInDate = document.getElementById('checkInDate').value;
+            document.getElementById('checkOutDate').min = checkInDate;
+        }
+
+        function confirmBooking() {
+            // Add logic here to submit the booking details to your server/database
+            alert('Booking confirmed! Data submitted.');
+        }
+
+        function goToHomePage() {
+            // Redirect to the desired home page
+            window.location.href = 'hotel.html';
+        }
+    </script>
+</body>
+
+</html>
