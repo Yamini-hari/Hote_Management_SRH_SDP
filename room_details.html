@@ -37,6 +37,22 @@
             font-size: 40px;
         }
 
+        .hotel-logo a {
+            text-decoration: none; /* Remove default link underline */
+            color: white;
+        }
+
+        .hotel-logo {
+            position: absolute;
+            top: 15px;
+            left: 70px;
+        }
+
+        .hotel-logo img {
+            width: 50px;
+            height: auto;
+        }
+
         section {
             padding: 1em;
             background-color: #fff;
@@ -172,10 +188,13 @@
 </head>
 
 <body>
-    <header class="text">
-        <a href="hotel.html" class="logo">
-            <img src="./Assets/images/Hotel-logo.jpeg" alt="Logo"></a>
-        Select the room
+    <header>
+        <h1>Select The Room</h1>
+            <div class="hotel-logo">
+                <a href="hotel.html">
+                    <img src="./Assets/images/hotel-logo.jpeg" alt="Hotel Logo">
+                </a>
+            </div>
     </header>
 
     <div class="container">
@@ -230,24 +249,26 @@
 
         <button class="back-to-top-btn" onclick="scrollToTop()">Back to Top</button>
 
+    </div>
+
         <footer>
-            <div class="container">
+
                 <div class="footer-contact">
                     <h3>Contact Us</h3>
                     <p>Moonlight Manor</p>
                     <p>123 Luxury Street, Heidelberg</p>
-                    <p>Phone: <strong>+1-123-456-7890</strong></p>
-                    <p>Email: <strong>MoonlightManorhotel.com</strong></p>
+                    <p>Phone: +49-123-456-7890</p>
+                    <p>Email: MoonlightManorhotel@gmail.com</p>
                 </div>
 
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="rooms.html">Rooms & Suites</a></li>
-                        <li><a href="dining.html">Dining</a></li>
-                        <li><a href="spa.html">Spa</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="hotel.html">Home</a></li>
+                        <li><a href="booking.html">New Bookings</a></li>
+                        <li><a href="booking_overview.html">Bookings</a></li>
+                        <li><a href="services.html">Services</a></li>
+
                     </ul>
                 </div>
 
@@ -264,7 +285,7 @@
             <p class="footer-copyright">&copy; 2023 Moonlight Manor. All rights reserved.</p>
         </footer>
 
-    </div>
+
 
     <script>
     const selectedRooms = [];  // Add this line to declare the selectedRooms array
