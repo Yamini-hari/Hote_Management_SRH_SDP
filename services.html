@@ -17,7 +17,31 @@
         box-sizing: border-box;
     }
 
+    header {
+        background-color: rgb(22, 22, 112);
+        color: white;
+        text-align: left;
+        padding: 50px;
+    }
+
+    .hotel-logo a {
+        text-decoration: none; /* Remove default link underline */
+        color: white;
+    }
+
+    .hotel-logo {
+        position: absolute;
+        top: 15px;
+        left: 70px;
+    }
+
+    .hotel-logo img {
+        width: 50px;
+        height: auto;
+    }
+
     body {
+        font-family: Arial, sans-serif;
         min-height: 100vh;
         background-color: #fafafa;
         font-size: 18px;
@@ -38,15 +62,7 @@
         padding: 1.5rem 0.5rem;
     }
 
-    .home-button {
-        background-color: #333;
-        color: white;
-        padding: 0.5em;
-        cursor: pointer;
-        position: absolute;
-        top: 3em;
-        left: 4em;
-    }
+
 
     .row {
         display: flex;
@@ -282,20 +298,137 @@
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
         }
     }
+
+            footer {
+            background-color: rgb(22, 22, 112);
+            color: #fff;
+            text-align: center;
+            padding: 2em 0;
+        }
+
+        .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .footer-section-left {
+            text-align: left;
+        }
+
+        .footer-section-center {
+            text-align: center;
+        }
+
+        .footer-section-right {
+            text-align: right;
+        }
+
+        h3 {
+            color: #f5a623;
+        }
+
+        h5 {
+            color: #000000;
+        }
+
+        p {
+            margin: 0.5em 0;
+        }
+
+        strong {
+            color: #f5a623;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #f5a623;
+        }
+
+        .footer-social ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .footer-social li {
+            margin: 0 10px;
+        }
+
+        .footer-social a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #f5a623;
+        }
+
+        .footer-copyright {
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+
+        .back-to-top-btn {
+            display: none;
+            font-size: 0.8em;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgb(22, 22, 112);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 </style>
 
 <body>
 
 
+
+    <header class="text">
+        <a href="hotel.html" class="hotel-logo">
+            <img src="./Assets/images/Hotel-logo.jpeg" alt="Logo"></a>
+
     </header>
+
     <main>
 
         <div class="container">
-            <button class="home-button" onclick="goToHomePage()">Home</button>
+
 
             <!-- Top Text -->
             <div class="page-header-container">
-                <h2 class="page-header">Stay Safe Services</h2>
+                <h2 class="page-header">Services</h2>
                 <hr />
                 <p class="page-sub-header">
                     Get the most of our hotel facilities. Enjoy the state of <br> the art facilities in our hotel
@@ -311,13 +444,13 @@
 
                     </div>
                     <div class="col">
-                        <h3 class="right-title">Access to 24hr Digital <br> Telephone Services</h3>
+                        <h5 class="right-title">Access to 24hr Digital <br> Telephone Services</h5>
                         <p>
                             With our feature rich Digital telephone services, you <br> will have the flexibility you
                             have always wanted with <br> voice communication from your home or business.
                         </p>
                         <br>
-                        <h3>More Details</h3>
+                        <h5>More Details</h5>
                         <ul class="facilities-list">
                             <li>
                                 <div>
@@ -362,9 +495,9 @@
                                 always available.
                             </p>
                             <p class="list-text">For inquiries, please contact our 24/7 helpline:</p>
-                            <p class="list-text">Phone: +1 (555) 123-4567</p>
+                            <p class="list-text">Phone: +49-123-456-7890</p>
                             <br>
-                            <p class="list-text">Email: info@staysafehotel.com</p>
+                            <p class="list-text">Email: MoonlightManorhotel@gmail.com</p>
 
 
                         </div>
@@ -377,9 +510,9 @@
                                 ten years experience.
                             </p>
                             <p class="list-text">For inquiries, please contact our 24/7 helpline:</p>
-                            <p class="list-text">Phone: +1 (555) 123-4567</p>
+                            <p class="list-text">Phone: +49-123-456-7890</p>
                             <br>
-                            <p class="list-text">Email: info@staysafehotel.com</p>
+                            <p class="list-text">Email: MoonlightManorhotel@gmail.com</p>
                         </div>
 
                         <div class="gallery-item">
@@ -391,9 +524,9 @@
                                 chic, serene setting.
                             </p>
                             <p class="list-text">For inquiries, please contact our 24/7 helpline:</p>
-                            <p class="list-text">Phone: +1 (555) 123-4567</p>
+                            <p class="list-text">Phone: +49-123-456-7890</p>
                             <br>
-                            <p class="list-text">Email: info@staysafehotel.com</p>
+                            <p class="list-text">Email: MoonlightManorhotel@gmail.com</p>
                         </div>
 
                         <div class="gallery-item">
@@ -405,9 +538,9 @@
                                 in a blissful oasis.
                             </p>
                             <p class="list-text">For inquiries, please contact our 24/7 helpline:</p>
-                            <p class="list-text">Phone: +1 (555) 123-4567</p>
+                            <p class="list-text">Phone: +49-123-456-7890</p>
                             <br>
-                            <p class="list-text">Email: info@staysafehotel.com</p>
+                            <p class="list-text">Email: MoonlightManorhotel@gmail.com</p>
                         </div>
 
                         <div class="gallery-item">
@@ -418,9 +551,9 @@
                                 tasted before in our hotel.
                             </p>
                             <p class="list-text">For inquiries, please contact our 24/7 helpline:</p>
-                            <p class="list-text">Phone: +1 (555) 123-4567</p>
+                            <p class="list-text">Phone: +49-123-456-7890</p>
                             <br>
-                            <p class="list-text">Email: info@staysafehotel.com</p>
+                            <p class="list-text">Email: MoonlightManorhotel@gmail.com</p>
                         </div>
 
                         <div class="gallery-item">
@@ -431,9 +564,9 @@
                                 instructor waiting to guide you
                             </p>
                             <p class="list-text">For inquiries, please contact our 24/7 helpline:</p>
-                            <p class="list-text">Phone: +1 (555) 123-4567</p>
+                            <p class="list-text">Phone: +49-123-456-7890</p>
                             <br>
-                            <p class="list-text">Email: info@staysafehotel.com</p>
+                            <p class="list-text">Email: MoonlightManorhotel@gmail.com</p>
                         </div>
 
                     </div>
@@ -444,12 +577,63 @@
     </main>
 
 
-</body>
+ <footer>
+            <div class="container">
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p>Moonlight Manor</p>
+                    <p>123 Luxury Street, Heidelberg</p>
+                    <p>Phone: +49-123-456-7890</p>
+                    <p>Email: MoonlightManorhotel@gmail.com</p>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="hotel.html">Home</a></li>
+                        <li><a href="booking.html">New Bookings</a></li>
+                        <li><a href="booking_overview.html">Bookings</a></li>
+                        <li><a href="services.html">Services</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="https://www.facebook.com/" target="_blank">Facebook</a></li>
+                        <li><a href="https://twitter.com/" target="_blank">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <p class="footer-copyright">&copy; 2023 Moonlight Manor. All rights reserved.</p>
+ </footer>
+
+        <button class="back-to-top-btn" onclick="scrollToTop()">Back to Top</button>
+
 <script>
-    function goToHomePage() {
-            // Redirect to the desired home page
-            window.location.href = 'hotel.html';
+    // Show or hide back to top button based on scroll position
+    const backToTopBtn = document.querySelector('.back-to-top-btn');
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 500) {
+            backToTopBtn.style.display = 'block';
+        } else {
+            backToTopBtn.style.display = 'none';
         }
+    });
+
+    // Function to scroll smoothly to the top
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
 </script>
 
+
+</body>
 </html>
