@@ -82,7 +82,9 @@
 
         <h2>Selected Room</h2>
         <ul id="selectedRoomsList"></ul>
+        <p id="totalServiceAmount"></p>
         <p id="totalAmount"></p>
+
 
         <button onclick="confirmBooking()">Confirm Booking</button>
         <button onclick="goToHomePage()">Back to Home</button>
@@ -127,10 +129,31 @@
                 selectedRoomsList.appendChild(listItem);
             });
 
-            // Calculate and display total amount
-            const totalPrice = selectedRoom.reduce((sum, room) => sum + room.price * userDetails.totalNights, 0);
-            totalAmount.innerText = `Total Amount: $${totalPrice}`;
+            // Calculate and display total amount including room prices and selected services
+        const roomPrice = selectedRoom.reduce((sum, room) => sum + room.price * userDetails.totalNights, 0);
+        const servicesPrice = selectedServices ? selectedServices.reduce((sum, service) => sum + calculateServicePrice(service), 0) : 0;
+        const totalPrice = roomPrice + servicesPrice;
+
+        totalAmount.innerText = `Total Amount: $${totalPrice}`;
+        totalServiceAmount.innerText = `Total Service Amount: $${servicesPrice}`;
+    }
+
+    function calculateServicePrice(service) {
+        // Adjust the service prices based on the service type
+        switch (service.name.toLowerCase()) {
+            case 'breakfast':
+                return 30 * userDetails.totalNights * userDetails.guests;
+            case 'wifi':
+                return 20;
+            case 'parking':
+                return 10;
+            case 'spa':
+                return 50 * userDetails.guests;
+            default:
+                return 0;
         }
+    }
+
 
         function confirmBooking() {
             // Add logic here to submit the booking details to your server/database
