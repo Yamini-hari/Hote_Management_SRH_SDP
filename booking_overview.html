@@ -113,7 +113,7 @@
             if (selectedServices && selectedServices.length > 0) {
                 servicesListOverview.innerHTML = `<strong>Services:</strong> <ul>${selectedServices.map(service => `<li>${service.name} - $${service.amount}</li>`).join('')}</ul>`;
             } else {
-                servicesListOverview.innerHTML = "<strong>Services:</strong> No services selected.";
+                servicesListOverview.innerHTML = "<strong></strong> No services selected.";
             }
         }
 
