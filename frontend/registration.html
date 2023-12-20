@@ -76,9 +76,9 @@
         }
 
         .logo img {
-            max-width: 40px;
+            max-width: 40px; /* Adjust the max-width as needed */
             height: auto;
-            margin-right: 1500px;
+            margin-right: 1500px; /* Adjust the margin as needed */
         }
 
     </style>
@@ -88,9 +88,7 @@
 
     <header>
         <div class="logo">
-            <a href="hotel.html">
-                <img src="./Assets/images/hotel-logo.jpeg" alt="Hotel Logo">
-            </a>
+            <img src="./Assets/images/hotel-logo.jpeg" alt="Hotel Logo">
         </div>
         <h1>Registration</h1>
     </header>
@@ -98,10 +96,13 @@
     <section>
         <h2>Create Your Account</h2>
     
-        <form id="validationForm">
-            <label for="name">Name: </label>
-            <input type="text" id="name" name="name" oninput="validateName()" required>
-            <p id="nameResult"></p>
+        <form id="registrationForm">
+            <label for="firstName">First Name:</label>
+            <input type="text"  name="first_name" id="first_name" required>
+            <p id="FirstnameResult"></p>
+            <label for="lastName">Last Name:</label>
+            <input type="text"  name="last_name" id="last_name"  required>
+            <p id="LasttnameResult"></p>
 
         
             <label for="email">Email: </label>
@@ -113,10 +114,10 @@
             <p id="passwordResult"></p>
         
             <label for="phoneNumber">Phone Number: </label>
-            <input type="text" id="phoneNumber" name="phoneNumber" oninput="validatePhoneNumber()" required>
+            <input type="text" id="phoneNumber" name="phone" oninput="validatePhoneNumber()" required>
             <p id="phoneResult"></p>
 
-            <button type="button" onclick="loginUser()">Register Now</button>
+            <button type="submit">Register Now</button>
         </form>
 
         <p>Already have an account? <a href="login.html">Login here</a>.</p>
@@ -135,19 +136,19 @@
                 }
             });
 
-            function validateName() {
-                var nameInput = document.getElementById('name');
-                var name = nameInput.value;
+            // function validateName() {
+            //     var nameInput = document.getElementById('name');
+            //     var name = nameInput.value;
 
-                // Validate name - Only allow letters and spaces
-                var namePattern = /^[a-zA-Z\s]+$/;
+            //     // Validate name - Only allow letters and spaces
+            //     var namePattern = /^[a-zA-Z\s]+$/;
 
-                if (namePattern.test(name)) {
-                    document.getElementById('nameResult').innerHTML = 'Valid name.';
-                } else {
-                    document.getElementById('nameResult').innerHTML = 'Please enter a valid name (only letters and spaces).';
-                }
-            }
+            //     if (namePattern.test(name)) {
+            //         document.getElementById('nameResult').innerHTML = 'Valid name.';
+            //     } else {
+            //         document.getElementById('nameResult').innerHTML = 'Please enter a valid name (only letters and spaces).';
+            //     }
+            // }
 
             function validateEmail() {
                 var emailInput = document.getElementById('email');
@@ -188,6 +189,36 @@
                     document.getElementById('phoneResult').innerHTML = 'Please enter a valid phone number with country code (e.g., +1234567890).';
                 }
             }
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Create a FormData object
+        const formData = new FormData(event.target);
+
+        fetch('http://localhost:8000/customers/', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer YOUR_TOKEN_HERE`, // Replace with actual token if needed
+                // 'Content-Type': 'application/json' is removed because FormData uses 'multipart/form-data'
+            },
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(() => {
+            alert('Registration successful');
+            window.location.href = 'login.html'; // Redirect to login page or another page as needed
+        })
+        .catch(error => {
+            console.error('Error during registration:', error);
+            alert('Error during registration.');
+        });
+    });
 
 
         </script>
