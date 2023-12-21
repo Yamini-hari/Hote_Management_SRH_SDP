@@ -299,7 +299,7 @@
 
             selectedRoom.forEach(room => {
                 const listItem = document.createElement('li');
-                listItem.innerHTML = `${room.category} - $${room.price} per night`;
+                listItem.innerHTML = `${room.category} - €${room.price} per night`;
                 selectedRoomsList.appendChild(listItem);
             });
 
@@ -309,7 +309,7 @@
         const totalPrice = roomPrice + servicesPrice;
 
         totalAmount.innerText = `Total Amount: $${totalPrice}`;
-        totalServiceAmount.innerText = `Total Service Amount: $${servicesPrice}`;
+        totalServiceAmount.innerText = `Total Service Amount: €${servicesPrice}`;
     }
 
 
@@ -338,7 +338,6 @@
         console.log('Booking confirmed:', transcation);
         alert('Booking confirmed.');
         window.location.href = '/mybookings.html';
-        // Redirect or update UI as needed
     })
     .catch(error => {
         console.error('Error confirming booking:', error);
@@ -347,7 +346,6 @@
 }
 
         function goToHomePage() {
-            // Redirect to the desired home page
             window.location.href = 'booking.html';
         }
 
@@ -370,7 +368,6 @@ function displayBookingDetails() {
         document.getElementById('overviewCheckOutDate').innerText = bookingData.checkout_date;
         document.getElementById('overviewGuests').innerText = bookingData.guests;
         document.getElementById('overviewTotalAmount').innerText = bookingData.total_amount;
-        // Add more fields as needed
 
         // Fetch and display customer details
         fetchCustomerDetails(bookingData.customerid);
@@ -414,10 +411,9 @@ function fetchCustomerDetails(customerId) {
     })
     .then(response => response.json())
     .then(customer => {
-        // Assuming the customer object has firstName and lastName properties
         document.getElementById('overviewName').innerText = `${customer.first_name} ${customer.last_name}`;
         document.getElementById('overviewEmail').innerText = customer.email;
-        // Add more fields as needed
+        
     })
     .catch(error => {
         console.error('Error fetching customer details:', error);
@@ -432,8 +428,8 @@ function createTransaction(bookingId, paymentMethod) {
     const customerid = sessionStorage.getItem('customerid');
     const transactionData = {
         bookingid: bookingId,
-        customerid: customerid, // Assuming you have customerid in bookingData
-        total_amount: bookingData.total_amount, // Implement this function based on your logic
+        customerid: customerid, 
+        total_amount: bookingData.total_amount, 
         payment_type: paymentMethod
     };
 
@@ -450,7 +446,6 @@ function createTransaction(bookingId, paymentMethod) {
         console.log('Transaction created:', transaction);
         alert('Booking and transaction successful.');
         return transaction;
-     // Redirect as needed
     })
     .catch(error => {
         console.error('Error creating transaction:', error);

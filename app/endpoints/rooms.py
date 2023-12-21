@@ -64,7 +64,6 @@ async def read_available_rooms():
     available_rooms_data = db.read('Rooms', conditions="WHERE is_available = TRUE")
     available_rooms = []
     for room_data in available_rooms_data:
-        # Transform room_data into the structure expected by the Room model
         room = Room(
             roomid=room_data[0],
             room_type=room_data[1],

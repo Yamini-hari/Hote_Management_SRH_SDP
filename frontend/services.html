@@ -527,7 +527,6 @@
         <button class="back-to-top-btn" onclick="scrollToTop()">Back to Top</button>
 
 <script>
-    // Show or hide back to top button based on scroll position
     const backToTopBtn = document.querySelector('.back-to-top-btn');
 
     window.addEventListener('scroll', function () {
@@ -546,7 +545,7 @@
         });
     }
     function fetchServices() {
-        fetch('http://localhost:8000/services')  // Replace with your actual backend URL
+        fetch('http://localhost:8000/services')  
             .then(response => response.json())
             .then(services => {
                 updateServicesDisplay(services);
@@ -558,11 +557,11 @@
         // Mapping of service descriptions to image filenames
         const imageMap = {
             "Swimming Pool": "swimming_pool.webp",
-            "Sauna":"sauna.webp",
+            "Sauna":"sauna.jpeg",
             "Salon": "saloon.jpg",
-            "Fitness centre": "gym.webp",
+            "Fitness centre": "Fitness centre.jpg",
             "Spa": "spa.jpg",
-            // Add more mappings as needed
+            
         };
 
         return imageMap[description] || "default.jpg";  // Fallback to a default image if not found
@@ -580,7 +579,7 @@
                 <img class="gallery-image" src="${imageUrl}" alt="${service.service_name}">
                 <h4>${service.service_name}</h4>
                 <p class="imggrid">${service.description}</p>
-                <p class="list-text">Price: ${service.price}</p>
+                <p class="list-text">Price:€${service.price}</p>
             `;
             gallery.appendChild(serviceItem);
         });

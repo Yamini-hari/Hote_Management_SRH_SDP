@@ -8,7 +8,7 @@ class MySQLCRUD:
         self.mydb = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="",
+            password="krithicka",
             database='sdp_new'
         )
         self.mycursor = self.mydb.cursor()

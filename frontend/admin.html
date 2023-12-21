@@ -18,14 +18,13 @@
             text-align: center;
         }
         #logoutButton {
-        /* Add your styling here */
-        background-color: #0718d2; /* Red color for logout button */
+        background-color: #ce460c; 
         color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-top: 10px; /* Adjust as needed */
+        margin-top: 10px; 
     }
 
     #logoutButton:hover {
@@ -72,7 +71,6 @@
             width: 100%;
         }
 
-         /* Back to Top Button Styles */
         #back-to-top {
             display: none;
             position: fixed;
@@ -113,7 +111,6 @@
 <section id="room_status">
     <h2>Room Management</h2>
 
-    <!-- Form for Creating New Room -->
     <div>
         <h3>Add New Room</h3>
         <form id="createRoomForm">
@@ -127,8 +124,7 @@
         </form>
     </div>
 
-    <!-- Table for Displaying Rooms -->
-    <div>
+]    <div>
         <h3>Current Rooms</h3>
         <table>
             <thead>
@@ -144,13 +140,11 @@
                 </tr>
             </thead>
             <tbody id="roomsContainer">
-                <!-- Rooms will be dynamically added here -->
-            </tbody>
+\            </tbody>
         </table>
     </div>
 
-    <!-- Form for Updating Room (Initially Hidden) -->
-    <div id="updateRoomForm" style="display: none;">
+]    <div id="updateRoomForm" style="display: none;">
         <h3>Update Room</h3>
         <form>
             <input type="hidden" id="updateRoomId">
@@ -169,7 +163,6 @@
 <section id="customer_management">
     <h2>Customer Management</h2>
 
-    <!-- Form for Creating New Customer -->
     <div>
         <h3>Add New Customer</h3>
         <form id="createCustomerForm">
@@ -182,7 +175,6 @@
         </form>
     </div>
 
-    <!-- Table for Displaying Customers -->
     <div>
         <h3>Current Customers</h3>
         <table>
@@ -197,12 +189,10 @@
                 </tr>
             </thead>
             <tbody id="customersContainer">
-                <!-- Customers will be dynamically added here -->
             </tbody>
         </table>
     </div>
 
-    <!-- Form for Updating Customer (Initially Hidden) -->
     <div id="updateCustomerForm" style="display: none;">
         <h3>Update Customer</h3>
         <form>
@@ -221,7 +211,6 @@
 <section id="service_management">
     <h2>Service Management</h2>
 
-    <!-- Form for Creating New Service -->
     <div>
         <h3>Add New Service</h3>
         <form id="createServiceForm">
@@ -232,7 +221,6 @@
         </form>
     </div>
 
-    <!-- Table for Displaying Services -->
     <div>
         <h3>Current Services</h3>
         <table>
@@ -246,12 +234,10 @@
                 </tr>
             </thead>
             <tbody id="servicesContainer">
-                <!-- Services will be dynamically added here -->
             </tbody>
         </table>
     </div>
 
-    <!-- Form for Updating Service (Initially Hidden) -->
     <div id="updateServiceForm" style="display: none;">
         <h3>Update Service</h3>
         <form>
@@ -267,7 +253,6 @@
 <section id="booking_management">
     <h2>Booking Management</h2>
 
-    <!-- Form for Creating New Booking -->
     <div id="createBookingForm">
         <h3>Add New Booking</h3>
         <form>
@@ -280,7 +265,6 @@
         </form>
     </div>
 
-    <!-- Form for Updating Booking -->
     <div id="updateBookingForm" style="display: none;">
         <h3>Update Booking</h3>
         <form>
@@ -294,7 +278,6 @@
         </form>
     </div>
 
-    <!-- Table for Displaying Bookings -->
     <div>
         <h3>Current Bookings</h3>
         <table>
@@ -311,7 +294,6 @@
                 </tr>
             </thead>
             <tbody id="bookingsContainer">
-                <!-- Bookings will be dynamically added here -->
             </tbody>
         </table>
     </div>
@@ -319,7 +301,6 @@
 <section id="transaction_management">
     <h2>Transaction Management</h2>
 
-    <!-- Form for Creating New Transaction -->
     <div id="createTransactionForm">
         <h3>Add New Transaction</h3>
         <form>
@@ -331,7 +312,6 @@
         </form>
     </div>
 
-    <!-- Form for Updating Transaction (Initially Hidden) -->
     <div id="updateTransactionForm" style="display: none;">
         <h3>Update Transaction</h3>
         <form>
@@ -344,7 +324,6 @@
         </form>
     </div>
 
-    <!-- Table for Displaying Transactions -->
     <div>
         <h3>Current Transactions</h3>
         <table>
@@ -359,7 +338,6 @@
                 </tr>
             </thead>
             <tbody id="transactionsContainer">
-                <!-- Transactions will be dynamically added here -->
             </tbody>
         </table>
     </div>
@@ -367,7 +345,6 @@
 <section id="employee_management">
     <h2>Employee Management</h2>
 
-    <!-- Form for Creating New Employee -->
     <div id="createEmployeeForm">
         <h3>Add New Employee</h3>
         <form>
@@ -378,7 +355,6 @@
         </form>
     </div>
 
-    <!-- Table for Displaying Employees -->
     <div>
         <h3>Current Employees</h3>
         <table>
@@ -392,12 +368,10 @@
                 </tr>
             </thead>
             <tbody id="employeesContainer">
-                <!-- Employees will be dynamically added here -->
             </tbody>
         </table>
     </div>
 
-    <!-- Form for Updating Employee (Initially Hidden) -->
     <div id="updateEmployeeForm" style="display: none;">
         <h3>Update Employee</h3>
         <form>
@@ -412,15 +386,14 @@
 
 
 
-
+<!-- 
 <footer>
     <p>&copy; 2023 Moonlight Manor. All rights reserved.</p>
-</footer>
+</footer> -->
 
 <button id="back-to-top" onclick="scrollToTop()">Back to Top</button>
 
 <script>
-    // Back to Top Functionality
 function scrollToTop() {
         window.scrollTo({
             top: 0,
@@ -428,7 +401,6 @@ function scrollToTop() {
         });
     }
 
-    // Show/Hide Footer and Back to Top Button
     var prevScrollpos = window.pageYOffset;
 
     window.onscroll = function() {
@@ -519,7 +491,6 @@ function createRoom() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        // Refresh the rooms list and reset the form
         fetchRooms();
         resetCreateRoomForm();
     })
@@ -546,7 +517,6 @@ function showUpdateRoomForm(roomId) {
         document.getElementById('newRoomDesc').value = room.room_desc;
         document.getElementById('newRoomStatus').value = room.is_available;
 
-        // Change the create button to an update button
         const submitButton = document.getElementById('createRoomForm').querySelector('button');
         submitButton.onclick = () => updateRoom(roomId);
         submitButton.textContent = 'Update Room';
@@ -580,7 +550,6 @@ function updateRoom(roomId) {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-        // Refresh the rooms list and reset the form
         fetchRooms();
         resetCreateRoomForm();
     })
@@ -639,7 +608,6 @@ function createCustomer() {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
-            // 'Content-Type': 'application/json' is removed because FormData uses 'multipart/form-data'
         },
         body: formData
     })
@@ -1042,7 +1010,7 @@ function deleteBooking(bookingId) {
         return;
     }
 
-    fetch(`http://localhost:8000/bookings/${bookingId}`, {
+    fetch(`http://localhost:8000/bookings/${bookingId}/${roomid}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`

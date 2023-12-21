@@ -32,14 +32,14 @@ body {
 }
 
 .hotel-title {
-    position: absolute; /* Position the title absolutely within the hotel-photo div */
-    top: 30%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Align the center of the hotel-title with the center of the image */
+    position: absolute; 
+    top: 30%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
     font-family: cursive, 'Times New Roman', Times, serif;
-    color: rgb(0, 0, 0); /* Text color */
-    font-size: 60px; /* Text size */
-    text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Text shadow for better readability */
+    color: rgb(0, 0, 0); 
+    font-size: 60px; 
+    text-shadow: 2px 2px 4px rgb(0, 0, 0); 
 }
 
 .room-section {
@@ -55,13 +55,12 @@ body {
 }
 
 .room-description {
-    text-align: center; /* This ensures everything inside is centered */
-    margin-bottom: 40px; /* Adjust as needed for spacing */
+    text-align: center; 
+    margin-bottom: 40px; 
 }
 
 .room-title {
-    margin-bottom: 10px; /* Space between title and paragraph */
-    /* Add more styling as needed */
+    margin-bottom: 10px; 
 }
 .room .description {
     font-size: 20px;
@@ -76,11 +75,11 @@ body {
 }
 
 .left .description {
-    order: 1; /* Description comes first for odd-numbered rooms */
+    order: 1; 
 }
 
 .right .description {
-    order: -1; /* Description comes after the image for even-numbered rooms */
+    order: -1; 
 }
 
 @media (max-width: 768px) {
@@ -90,7 +89,7 @@ body {
 
     .room img,
     .room .description {
-        order: 0; /* Stack them on top of each other on smaller screens */
+        order: 0; 
         width: 100%;
     }
 }

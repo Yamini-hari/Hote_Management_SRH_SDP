@@ -28,7 +28,6 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
 
 @router.post("/login")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    # Use form_data.username as the email
     user = db.read('customers', conditions=f"WHERE email = '{form_data.username}'")
     print(user[0][4])
     if not user or not pwd_context.verify(form_data.password, user[0][5]):
@@ -38,7 +37,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
             headers={"WWW-Authenticate": "Bearer"},
         )
     access_token = create_access_token(data={"sub": user[0][3]})
-    customerid= user[0][4]  # Assuming user[0][3] 
+    customerid= user[0][4]  
     return {"customerid":customerid,"access_token": access_token, "token_type": "bearer"}
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
@@ -52,7 +51,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception
-        # You can add more user verification logic here (e.g., check if user exists in DB)
     except JWTError:
         raise credentials_exception
     return email
@@ -65,13 +63,11 @@ async def get_user_details(current_user: str = Depends(get_current_user)):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="User not found"
         )
-    # Ensure that the index used here matches the position of customer_id in your database schema
     return {"customer_id": user[0][0]}
 
 
 @router.post("/admin/login")
 async def admin_login(form_data: OAuth2PasswordRequestForm = Depends()):
-    # Authenticate against the admin table
     try:
         admin_user = db.read('admin', conditions=f"WHERE email = '{form_data.username}'")
         if not admin_user:
@@ -89,7 +85,6 @@ async def admin_login(form_data: OAuth2PasswordRequestForm = Depends()):
         access_token = create_access_token(data={"sub": admin_user[0][3]})  # Assuming email is the first element
         return {"access_token": access_token, "token_type": "bearer"}
     except Exception as e:
-        # Log the exception for debugging
         print(f"Error during admin login: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

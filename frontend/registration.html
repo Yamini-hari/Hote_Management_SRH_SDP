@@ -180,7 +180,6 @@
                 var phoneInput = document.getElementById('phoneNumber');
                 var phoneNumber = phoneInput.value;
 
-                // Validate phone number with country code using a regular expression pattern
                 var phonePattern = /^\+\d+$/;
 
                 if (phonePattern.test(phoneNumber)) {
@@ -199,8 +198,7 @@
         fetch('http://localhost:8000/customers/', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer YOUR_TOKEN_HERE`, // Replace with actual token if needed
-                // 'Content-Type': 'application/json' is removed because FormData uses 'multipart/form-data'
+                'Authorization': `Bearer YOUR_TOKEN_HERE`, 
             },
             body: formData
         })
@@ -212,7 +210,7 @@
         })
         .then(() => {
             alert('Registration successful');
-            window.location.href = 'login.html'; // Redirect to login page or another page as needed
+            window.location.href = 'login.html'; 
         })
         .catch(error => {
             console.error('Error during registration:', error);

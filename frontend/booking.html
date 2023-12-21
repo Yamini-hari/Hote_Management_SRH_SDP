@@ -20,7 +20,7 @@
       }
 
       .hotel-logo a {
-        text-decoration: none; /* Remove default link underline */
+        text-decoration: none; 
         color: white;
       }
 
@@ -175,7 +175,6 @@
       <section id="new-booking">
         <h2>New Booking</h2>
         <form id="bookingForm" onsubmit="submitForm(event)">
-          <!-- Include other form fields if necessary -->
           <label for="checkInDate">Check-in Date:</label>
           <input
             type="date"
@@ -286,8 +285,6 @@ function calculateTotalAmount(checkInDate, checkOutDate) {
 
     let totalAmount = roomPricePerDay * duration;
 
-    // If services are selected, add their cost to the total amount
-    // Assuming you have a way to calculate or retrieve the total service cost
 
     return totalAmount;
 }

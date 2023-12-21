@@ -19,8 +19,8 @@ origins = [
     "http://localhost:8000",  # Backend server
     "http://127.0.0.1:5500",  # Frontend server
     "http://localhost:3000",
-    "http://localhost:8080", 
-    "http://127.0.0.1:8080", # In case you're using something like React on default port
+    "http://localhost:8081", 
+    "http://127.0.0.1:8081", # In case you're using something like React on default port
     # Add other origins as needed
 ]
 

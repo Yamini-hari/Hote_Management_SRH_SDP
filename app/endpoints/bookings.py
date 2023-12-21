@@ -44,21 +44,17 @@ def calculate_total_amount(room_id: int, service_id: Optional[int], checkin_date
 
 @router.post("/", response_model=Booking)
 async def create_booking(booking: BookingCreate):
-    # Fetch IDs for validation
     service_ids = get_service_ids()
     room_ids = get_room_ids()
 
     if booking.roomid not in room_ids:
         raise HTTPException(status_code=400, detail="Invalid RoomID")
 
-    # Check if service ID is provided and valid
     if booking.serviceid is not None and booking.serviceid not in service_ids:
         raise HTTPException(status_code=400, detail="Invalid ServiceID")
 
-    # Calculate total amount
     total_amount = calculate_total_amount(booking.roomid, booking.serviceid, booking.checkin_date, booking.checkout_date)
 
-    # Create booking with calculated total amount
     booking_data = booking.dict()
     booking_data['total_amount'] = total_amount
     booking_id = db.create('Bookings', list(booking_data.keys()), list(booking_data.values()))

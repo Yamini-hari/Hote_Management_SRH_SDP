@@ -240,7 +240,7 @@
 
 
     <script>
-    const selectedRooms = [];  // Add this line to declare the selectedRooms array
+    const selectedRooms = [];  
 
     function fetchRooms() {
     fetch('http://localhost:8000/rooms')
@@ -260,7 +260,7 @@ function aggregateRooms(rooms) {
                 price: room.room_price,
                 desc: room.room_desc,
                 id: room.roomid,
-                count: 0  // Initialize count to 0
+                count: 0  
             };
         }
     });
